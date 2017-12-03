@@ -1,0 +1,11 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "LoL-17-Growth.data.unityweb",
+"asmCodeUrl": "LoL-17-Growth.asm.code.unityweb",
+"asmMemoryUrl": "LoL-17-Growth.asm.memory.unityweb",
+"asmFrameworkUrl": "LoL-17-Growth.asm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
