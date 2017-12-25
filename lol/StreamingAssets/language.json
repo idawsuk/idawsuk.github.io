@@ -8,6 +8,33 @@
       "onePlusOne": 30
     }
   },
+
+  "en": {
+    "hunt-1-opening-1": "Animals need energy to perform their life processes.",
+    "hunt-1-opening-2": "This is Mr.Fox and he needs your help!",
+    "hunt-1-opening-3": "Mr. Fox need food for energy, look over there! Mr.Fox's craving for rabbits",
+    "hunt-1-opening-4": "Hold down Mr.Fox and flick him like a catapult to move him",
+    "hunt-1-success-1": "Good job! Now hunt more rabbit to complete the level!",
+    "hunt-1-complete-1": "Nice work now Mr.Fox is having a feast!",
+    "eat-1-opening-1": "Mr.Fox is hungry, lets give him the rabbit meat!",
+    "eat-1-opening-2": "Drag and drop the meat on Mr.Fox's mouth, tap the screen to chew.",
+    "eat-1-success-1": "Keep going!",
+    "eat-1-complete-1": "Stored chemical energy is released when food is digested.",
+    "energy-1-opening-1": "The chemical energy in food can be transformed into motion energy that allows an animal to move its body.",
+    "energy-1-opening-2": "Let's distribute the energy to Mr.Fox's body!",
+    "energy-1-opening-3": "Link the energy lines in order to complete the level!",
+    "energy-1-success-1": "Keep going!",
+    "energy-1-complete-1": "In the process of metabolism, food is broken down into forms of energy that can be used for an animal’s growth.",
+    "energy-1-complete-2": "Mr.Fox has grown stronger! good job!",
+    "hunt-2-opening-1": "Lookout not to hit trees and rocks, Mr.Fox doesn't like being hurt",
+    "hunt-2-opening-2": "Uh-oh Looks like Mr.Fox is hurt!",
+    "hunt-2-opening-3": "Energy also can be used for an animal's body repair",
+    "hunt-2-opening-4": "Come on! Mr.Fox needs more food!",
+    "eat-2-opening-1": "Uh-oh! Watch out for the Poisonus mushrooms!",
+    "eat-2-opening-2": "You can discard it into the trash can!"
+  }
+
+  /*
   "en": {
     "welcome": "Welcome!",
     "readyToPlay": "Are you ready to play?",
@@ -42,5 +69,5 @@
     "greatJob": "Отличная работа!",
     "pressContinue": "Нажмите следующую кнопку, чтобы продолжить.",
     "onePlusOne": "один + один"
-  }
+  }*/
 }
