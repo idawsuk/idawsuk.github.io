@@ -1,11 +1,28 @@
 {
   "_meta": {
     "maxChars": {
-      "welcome": 20,
-      "readyToPlay": 20,
-      "pressContinue": 50,
-      "greatJob": 20,
-      "onePlusOne": 30
+      "hunt-1-opening-1": 100,
+      "hunt-1-opening-2": 100,
+      "hunt-1-opening-3": 100,
+      "hunt-1-opening-4": 100,
+      "hunt-1-success-1": 100,
+      "hunt-1-complete-1": 100,
+      "eat-1-opening-1": 100,
+      "eat-1-opening-2": 100,
+      "eat-1-success-1": 100,
+      "eat-1-complete-1": 100,
+      "energy-1-opening-1": 100,
+      "energy-1-opening-2": 100,
+      "energy-1-opening-3": 100,
+      "energy-1-success-1": 100,
+      "energy-1-complete-1": 150,
+      "energy-1-complete-2": 100,
+      "hunt-2-opening-1": 100,
+      "hunt-2-opening-2": 100,
+      "hunt-2-opening-3": 100,
+      "hunt-2-opening-4": 100,
+      "eat-2-opening-1": 100,
+      "eat-2-opening-2": 100
     }
   },
 
@@ -33,41 +50,4 @@
     "eat-2-opening-1": "Uh-oh! Watch out for the Poisonus mushrooms!",
     "eat-2-opening-2": "You can discard it into the trash can!"
   }
-
-  /*
-  "en": {
-    "welcome": "Welcome!",
-    "readyToPlay": "Are you ready to play?",
-    "greatJob": "Great job!",
-    "pressContinue": "Press the next button to continue.",
-    "onePlusOne": "One + One = Two"
-  },
-  "es": {
-    "welcome": "¡Bienvenido!",
-    "readyToPlay": "¿Estás listo para jugar?",
-    "greatJob": "¡Gran trabajo!",
-    "pressContinue": "Presione el botón 'siguiente' para continuar.",
-    "onePlusOne": "Uno + Uno = Dos"
-  },
-  "zh": {
-    "welcome": "欢迎！",
-    "readyToPlay": "你准备好玩吗",
-    "greatJob": "做得好！",
-    "pressContinue": "按“下一步”按钮继续。",
-    "onePlusOne": "一+一=二"
-  },
-  "jp": {
-    "welcome": "ようこそ!",
-    "readyToPlay": "あなたは遊ぶ準備ができていますか？",
-    "greatJob": "よくやった！",
-    "pressContinue": "続行するには '次へ'ボタンを押してください。",
-    "onePlusOne": "1 + 1 = 2"
-  },
-  "ru": {
-    "welcome": "Добро пожаловать!",
-    "readyToPlay": "Вы готовы играть?",
-    "greatJob": "Отличная работа!",
-    "pressContinue": "Нажмите следующую кнопку, чтобы продолжить.",
-    "onePlusOne": "один + один"
-  }*/
 }
