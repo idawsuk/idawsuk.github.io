@@ -22,7 +22,19 @@
       "hunt-2-opening-3": 100,
       "hunt-2-opening-4": 100,
       "eat-2-opening-1": 100,
-      "eat-2-opening-2": 100
+      "eat-2-opening-2": 100,
+      "energy-2-opening-1": 100,
+      "energy-2-complete-1": 100,
+      "hunt-3-opening-1": 100,
+      "hunt-3-opening-2": 100,
+      "hunt-3-opening-3": 150,
+      "hunt-3-opening-4": 100,
+      "hunt-3-complete-1": 100,
+      "eat-3-opening-1": 50,
+      "eat-3-complete-1": 100,
+      "energy-3-opening-1": 100,
+      "energy-3-complete-1": 100,
+      "ending": 100
     }
   },
 
@@ -53,6 +65,16 @@
     "eat-2-opening-1": "Uh-oh! Watch out for the Poisonus mushrooms!",
     "eat-2-opening-2": "You can discard it into the trash can!",
     "energy-2-opening-1": "Let's distribute the energy to Mr.Fox's body! And let's see what happens next.",
-    "energy-2-complete-1": "As we can see here, stored energy also can be used for an animal's body repair."
+    "energy-2-complete-1": "As we can see here, stored energy also can be used for an animal's body repair.",
+    "hunt-3-opening-1": "Looks like snows are falling! Mr.Fox has to gather food to stock up in the winter.",
+    "hunt-3-opening-2": "But don't worry Mr.Fox is an endotherm animal.",
+    "hunt-3-opening-3": "Endotherms are animals that use energy in food to maintain their body warmth when the temperature in the environment changes.",
+    "hunt-3-opening-4": "Let's hunt some rabbits!",
+    "hunt-3-complete-1": "Nice work! Now let's eat up!",
+    "eat-3-opening-1": "Let's eat!",
+    "eat-3-complete-1": "Great now let's distribute the energy once more!",
+    "energy-3-opening-1": "Let's distribute the energy so Mr.Fox can warm up.",
+    "energy-3-complete-1": "Well done! Mr.Fox is feeling comfy right now!",
+    "ending": "Great job! You have witness an animal life processes, and suceeded to help Mr.Fox fulfill his needs! Thank you for helping!"
   }
 }
