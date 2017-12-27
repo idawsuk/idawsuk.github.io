@@ -56,6 +56,7 @@
     "energy-1-opening-1": "The chemical energy in food can be transformed into motion energy that allows an animal to move its body.",
     "energy-1-opening-2": "Let's distribute the energy to Mr.Fox's body!",
     "energy-1-opening-3": "Link the energy lines in order to complete the level!",
+    "energy-1-opening-4": "Let's connect the energy in order!",
     "energy-1-success-1": "Keep going!",
     "energy-1-complete-1": "In the process of metabolism, food is broken down into forms of energy that can be used for an animal’s growth.",
     "energy-1-complete-2": "Mr.Fox has grown stronger! good job!",
@@ -75,6 +76,7 @@
     "eat-3-complete-1": "Great now let's distribute the energy once more!",
     "energy-3-opening-1": "Let's distribute the energy so Mr.Fox can warm up.",
     "energy-3-complete-1": "Well done! Mr.Fox is feeling comfy right now!",
-    "ending": "Great job! You have witness an animal life processes, and suceeded to help Mr.Fox fulfill his needs! Thank you for helping!"
+    "ending": "Great job! You have witness an animal life processes, and suceeded to help Mr.Fox fulfill his needs! Thank you for helping!",
+    "thank-you": "Thank you for playing"
   }
 }
