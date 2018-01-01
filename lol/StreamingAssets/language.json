@@ -1,6 +1,11 @@
 {
   "_meta": {
     "maxChars": {
+      "main-menu-tap": 50,
+      "opening-cinematic-1": 100,
+      "opening-cinematic-2": 100,
+      "opening-cinematic-3": 100,
+      "opening-cinematic-4": 100,
       "hunt-1-opening-1": 100,
       "hunt-1-opening-2": 100,
       "hunt-1-opening-3": 100,
@@ -14,13 +19,13 @@
       "energy-1-opening-1": 100,
       "energy-1-opening-2": 100,
       "energy-1-opening-3": 100,
+      "energy-1-opening-4": 100,
       "energy-1-success-1": 100,
       "energy-1-complete-1": 150,
       "energy-1-complete-2": 100,
+      "second-cinematic-1": 100,
+      "second-cinematic-2": 100,
       "hunt-2-opening-1": 100,
-      "hunt-2-opening-2": 100,
-      "hunt-2-opening-3": 100,
-      "hunt-2-opening-4": 100,
       "eat-2-opening-1": 100,
       "eat-2-opening-2": 100,
       "energy-2-opening-1": 100,
@@ -34,11 +39,14 @@
       "eat-3-complete-1": 100,
       "energy-3-opening-1": 100,
       "energy-3-complete-1": 100,
-      "ending": 100
+      "ending": 100,
+      "thank-you": 50
     }
   },
 
   "en": {
+    "main-menu-tap": "Tap to play",
+    "dialogue-continue": "Tap to continue",
     "opening-cinematic-1": "In this game you're going to help an animal fulfil its needs!",
     "opening-cinematic-2": "In order to do that we must first understand what is animals life processes.",
     "opening-cinematic-3": "Animals need energy to perform their life processes.",
@@ -61,7 +69,7 @@
     "energy-1-complete-1": "In the process of metabolism, food is broken down into forms of energy that can be used for an animal’s growth.",
     "energy-1-complete-2": "Mr. Fox has grown stronger! good job!",
     "second-cinematic-1": "Let's see, what else can energy provide for Mr. Fox.",
-    "second-cinematic-2": "Uh-oh, looks like Mr. Fox is hurt! But that badly, let's hunt more rabbits!",
+    "second-cinematic-2": "Uh-oh, looks like Mr. Fox is hurt! But not that badly, let's hunt more rabbits!",
     "hunt-2-opening-1": "Lookout not to hit trees and rocks, Mr. Fox doesn't like being hurt",
     "eat-2-opening-1": "Uh-oh! Watch out! it's a poisonus mushrooms!",
     "eat-2-opening-2": "You can discard it into the trash can!",
@@ -77,6 +85,6 @@
     "energy-3-opening-1": "Let's distribute the energy so Mr.Fox can warm up.",
     "energy-3-complete-1": "Well done! Mr.Fox is feeling comfy right now!",
     "ending": "Great job! You have witness an animal life processes, and suceeded to help Mr.Fox fulfill his needs! Thank you for helping!",
-    "thank-you": "Thank you for playing"
+    "thank-you": "Thank you for playing."
   }
 }
