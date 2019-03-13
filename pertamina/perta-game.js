@@ -23,8 +23,6 @@ var timer;
 var score;
 
 function preload() {
-
-    game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
     game.load.image('button1', 'assets/perta/placeholder/pertamax-turbo-button.png');
     game.load.image('button2', 'assets/perta/placeholder/solar-button.png');
     game.load.image('button3', 'assets/perta/placeholder/pertamax-button.png');
@@ -69,7 +67,6 @@ var buttonMaintenance;
 var background;
 var ship;
 var tween;
-var buttonGroup;
 var firstQueue;
 var secondQueue;
 var thirdQueue;
@@ -83,6 +80,8 @@ var maxHealth;
 var mask1, mask2, mask3, mask4;
 var isMaintenance;
 var btn1Maintenance, btn2Maintenance, btn3Maintenance, btn4Maintenance;
+var hose1, hose2, hose3, hose4;
+var uiGroup, gameGroup;
 
 function create() {
     maxHealth = 5;
@@ -102,9 +101,11 @@ function create() {
 
     background = game.add.tileSprite(0, 0, 972, 564, 'background');
 
+    gameGroup = game.add.group();
+    uiGroup = game.add.group();
+
     var rand = chooseShip();
     spawnShip(rand);
-
 
     buttonMaintenance = game.add.button(15, game.world.height - 135, 'buttonMaintenance', maintenance, this);
     buttonMaintenance.scale.setTo(0.75, 0.75);
@@ -139,6 +140,18 @@ function create() {
     button3.mask = mask3;
     button4.mask = mask4;
 
+    hose1 = game.add.sprite(250, -100, 'icon1');
+    hose1.scale.setTo(1, 3);
+
+    hose2 = game.add.sprite(365, -100, 'icon1');
+    hose2.scale.setTo(1, 3);
+
+    hose3 = game.add.sprite(485, -100, 'icon1');
+    hose3.scale.setTo(1, 3);
+
+    hose4 = game.add.sprite(605, -100, 'icon1');
+    hose4.scale.setTo(1, 3);
+
     var scorePanel = game.add.sprite(30, 40, 'panel');
     scorePanel.scale.setTo(0.35, 0.35);
 
@@ -148,12 +161,19 @@ function create() {
     var orderPanel = game.add.sprite(750, 60, 'panel');
     orderPanel.scale.setTo(0.5, 0.75);
 
-    buttonGroup = game.add.group();
-    buttonGroup.add(buttonMaintenance);
-    buttonGroup.add(button1);
-    buttonGroup.add(button2);
-    buttonGroup.add(button3);
-    buttonGroup.add(button4);
+    uiGroup.add(buttonMaintenance);
+    uiGroup.add(button1);
+    uiGroup.add(button2);
+    uiGroup.add(button3);
+    uiGroup.add(button4);
+    uiGroup.add(mask1);
+    uiGroup.add(mask2);
+    uiGroup.add(mask3);
+    uiGroup.add(mask4);
+    uiGroup.add(scorePanel);
+    uiGroup.add(timerPanel);
+    uiGroup.add(orderPanel);
+    game.world.bringToTop(uiGroup);
 
     initQueue();
 }
@@ -171,12 +191,15 @@ function createText() {
 
     score = game.add.text(64, 40, "0", style);
     score.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+
+    uiGroup.add(timer);
+    uiGroup.add(score);
 }
 
 function processComplete() {
     tween = game.add.tween(ship).to({
-        x: -1500
-    }, 5000, Phaser.Easing.Quartic.In, true);
+        x:-ship.width
+    }, 2500, Phaser.Easing.Quadratic.In, true, 500);
     tween.onComplete.add(onCompleteMoveShip, this);
 }
 
@@ -188,6 +211,16 @@ function maintenance() {
 
 function moveMask(mask, value) {
     var maskMove = game.add.tween(mask).to({ y: value }, 500, Phaser.Easing.Linear.None, true);
+}
+
+function moveHose(hose) {
+    var hoseTween = game.add.tween(hose).to({ y:0 }, 1000, Phaser.Easing.Linear.None, true);
+    hoseTween.onComplete.add(checkRequirements);
+    hoseTween.onComplete.add(function() { moveBackHose(hose); }, this);
+}
+
+function moveBackHose(hose) {
+    var hoseBackTween = game.add.tween(hose).to({ y:-100 }, 1000, Phaser.Easing.Linear.None, true, 500);
 }
 
 function buttonOneClick() {
@@ -205,7 +238,7 @@ function buttonOneClick() {
             moveMask(mask1, mask1.y + (button1.height / maxHealth))
         }
 
-        checkRequirements();
+        moveHose(hose1);
     } else if(isMaintenance) {
         btn1Maintenance = true;
         var repair = game.add.tween(mask1).to({ y:mask1.y - ((button1.height / maxHealth) * (maxHealth - health1)) }, 5000 * (maxHealth - health1), Phaser.Easing.Linear.None, true);
@@ -232,7 +265,7 @@ function buttonTwoClick() {
             moveMask(mask2, mask2.y + (button2.height / maxHealth));
         }
 
-        checkRequirements();
+        moveHose(hose2);
     } else if(isMaintenance) {
         btn2Maintenance = true;
         var repair = game.add.tween(mask2).to({ y:mask2.y - ((button2.height / maxHealth) * (maxHealth - health2)) }, 5000 * (maxHealth - health2), Phaser.Easing.Linear.None, true);
@@ -259,7 +292,7 @@ function buttonThreeClick() {
             moveMask(mask3, mask3.y + (button3.height / maxHealth));
         }
 
-        checkRequirements();
+        moveHose(hose3);
     } else if(isMaintenance) {
         btn3Maintenance = true;
         var repair = game.add.tween(mask3).to({ y: mask3.y - ((button3.height / maxHealth) * (maxHealth - health3)) }, 5000 * (maxHealth - health3), Phaser.Easing.Linear.None, true);
@@ -286,7 +319,7 @@ function buttonFourClick() {
             moveMask(mask4, mask4.y + (button4.height / maxHealth));
         }
 
-        checkRequirements();
+        moveHose(hose4);
     } else if(isMaintenance) {
         console.log("maintenance button 4");
         btn4Maintenance = true;
@@ -304,18 +337,21 @@ function spawnShip(shipType) {
     if (ship != null) {
         ship.destroy();
     }
-    ship = game.add.sprite(1500, game.world.centerY - 100, 'ship' + shipType);
+    ship = game.add.sprite(game.world.width, game.world.centerY - 100, 'ship' + shipType);
     currentQueue = shipType;
     setRequirements(shipType);
     tween = game.add.tween(ship).to({
         x: game.world.centerX - 256
-    }, 3000, Phaser.Easing.Quartic.Out, true);
+    }, 2000, Phaser.Easing.Quadratic.Out, true, 1000);
     tween.onComplete.add(onCompleteMoveShipMid);
     buttonEnable = false;
+
+    gameGroup.add(ship);
+    game.world.bringToTop(uiGroup);
 }
 
 function onCompleteMoveShip() {
-    ship.x = 1500;
+    ship.x = 972;
     nextQueue();
 }
 
