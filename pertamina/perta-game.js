@@ -9,7 +9,7 @@ WebFontConfig = {
     //  We set a 1 second delay before calling 'createText'.
     //  For some reason if we don't the browser cannot render the text the first time it's created.
     active: function () {
-        game.time.events.add(Phaser.Timer.SECOND, createText, this);
+        // game.time.events.add(Phaser.Timer.SECOND, createText, this);
     },
 
     //  The Google Fonts we want to load (specify as many as you like in the array)
@@ -66,6 +66,18 @@ function preload() {
     game.load.image('btnPlay', 'assets/perta/btn-ngerti.png');
     game.load.image('btnMales', 'assets/perta/btn-males.png');
     game.load.image('gameOver', 'assets/perta/title-over.png');
+    game.load.image('overlay', 'assets/perta/box.jpg');
+    game.load.image('result', 'assets/perta/box-final.png');
+    game.load.image('btnMainLagi', 'assets/perta/btn-mainlagi.png');
+    game.load.image('btnUdahan', 'assets/perta/btn-udahan.png');
+    game.load.image('start', 'assets/perta/title-start.png');
+    game.load.image('titleBox', 'assets/perta/box-gelar.png');
+    game.load.audio('click', 'assets/perta/click.mp3');
+    game.load.audio('choiceRight', 'assets/perta/choice_right.mp3');
+    game.load.audio('choiceWrong', 'assets/perta/choice_wrong.mp3');
+    game.load.audio('title', 'assets/perta/new_title.mp3');
+    game.load.audio('result', 'assets/perta/result_screen.mp3');
+    game.load.audio('start', 'assets/perta/start.mp3');
 
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
@@ -91,11 +103,15 @@ var mask1, mask2, mask3, mask4;
 var isMaintenance;
 var btn1Maintenance, btn2Maintenance, btn3Maintenance, btn4Maintenance;
 var hose1, hose2, hose3, hose4;
-var uiGroup, gameGroup, hoseGroup;
-var titleText, bonusTimeText;
+var uiGroup, gameGroup, hoseGroup, endGameGroup;
+var titleText, bonusTimeText, titleBoxText;
 var flag1, flag2;
 var wrongFx;
 var mainMenuGroup, tutorialGroup, endingGroup;
+var currentTitle;
+var titleStart;
+var titleBox;
+var click, correct, incorrect;
 
 var startTime = new Date();
 
@@ -108,10 +124,16 @@ var titles
 var gameStarted = false;
 
 function create() {
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+    game.scale.startFullScreen();
+
+    click = game.add.audio('click');
+    incorrect = game.add.audio('choiceWrong');
+    correct = game.add.audio('choiceRight');
     totalTime = 5;
     timeElapsed = 0;
     score = 0;
-    shipCount;
+    shipCount = 0;
     titles = ["Pemula", "Ngerti Maen", "Mulai Bisaan", "Boleh Dipuji", "Awas Keringetan", "Jago Dikit", "Jago Dikit +1", "Jago Banyak", "Pemain Serius", "Pemain Veteran", "Pejuang Tangguh", "Calon Juara", "Juara Kelas", "Sarjana IPK 4", "Petugas Beneran", "Jempol Emas", "Pantas Dikeceng", "Tebar Pesona", "Idol Komplek", "Raja Minyak", "Jelmaan Si Toha", "Udahan Woy Mainnya"]
 
     maxHealth = 5;
@@ -185,12 +207,6 @@ function create() {
     hose4.width = 61;
     hose4.height = 223;
 
-    var scorePanel = game.add.sprite(23, 15, 'scorePanel');
-    scorePanel.scale.setTo(0.35, 0.35);
-
-    var timerPanel = game.add.sprite(23, 85, 'timerPanel');
-    timerPanel.scale.setTo(0.35, 0.35);
-
     // var orderPanel = game.add.sprite(game.world.width - 13, 21.5, 'panel');
     // orderPanel.width = 210;
     // orderPanel.height = 120.5;
@@ -211,16 +227,14 @@ function create() {
     // uiGroup.add(mask2);
     // uiGroup.add(mask3);
     // uiGroup.add(mask4);
-    uiGroup.add(scorePanel);
-    uiGroup.add(timerPanel);
-    // uiGroup.add(orderPanel);
-    uiGroup.add(wrongFx);
-    uiGroup.alpha = 0;
-    game.world.bringToTop(uiGroup);
 
     buttonEnable = false;
+    showMenu();
+}
 
+function showMenu() {
     var playBtn = game.add.button(0, 0, 'btnMain', function () {
+        click.play();
         showTutorial();
     }, this);
     playBtn.anchor.x = 0.5;
@@ -247,9 +261,11 @@ function showTutorial() {
     tutorialPanel.x = game.world.centerX;
     tutorialPanel.y = game.world.centerY - 35;
     var playBtn = game.add.button(game.world.centerX + 90, game.world.centerY + 135, 'btnPlay', function () {
-        startGame();
+        click.play();
+        countDown();
     }, this);
     var backButton = game.add.button(180, game.world.centerY + 135, 'btnMales', function () {
+        click.play();
         this.game.state.restart();
     }, this);
 
@@ -259,6 +275,19 @@ function showTutorial() {
 }
 
 function startGameInit() {
+    totalTime = 5;
+    timeElapsed = 0;
+    score = 0;
+    shipCount = 0;
+
+    uiGroup = game.add.group();
+
+    var scorePanel = game.add.sprite(23, 15, 'scorePanel');
+    scorePanel.scale.setTo(0.35, 0.35);
+
+    var timerPanel = game.add.sprite(23, 85, 'timerPanel');
+    timerPanel.scale.setTo(0.35, 0.35);
+
     button1 = game.add.button(20, game.world.height, 'button1', buttonOneClick, this);
     button1.anchor.y = 1;
     button1.anchor.x = 0;
@@ -304,14 +333,38 @@ function startGameInit() {
     button4.width = 205;
     button4.height = 120;
 
+    titleBox = game.add.sprite(game.world.centerX, 19, 'titleBox');
+    titleBox.anchor.x = 0.5;
+
+    var valueStyle = {
+        font: "Dosis",
+        fontWeight: "900",
+        fontSize: "30.5px",
+        fill: "#de6105",
+        align: "center"
+    };
+
+    titleBoxText = game.add.text(game.world.centerX, 35, "•Pemula•", valueStyle);
+    titleBoxText.anchor.x = 0.5;
+
     uiGroup.add(button1);
     uiGroup.add(button2);
     uiGroup.add(button3);
     uiGroup.add(button4);
+
+    uiGroup.add(scorePanel);
+    uiGroup.add(timerPanel);
+    // uiGroup.add(orderPanel);
+    uiGroup.add(wrongFx);
+    uiGroup.add(titleBox);
+    uiGroup.add(titleBoxText);
+    uiGroup.alpha = 0;
+    createText();
+    game.world.bringToTop(uiGroup);
 }
 
 function startGame() {
-    tutorialGroup.destroy();
+    titleStart.destroy();
     startGameInit();
 
     gameStarted = true;
@@ -331,8 +384,35 @@ function startGame() {
     initQueue();
 }
 
+function resetGame() {
+    endGameGroup.destroy();
+
+    score = 0;
+    currentTitle = "•Pemula•";
+
+    countDown();
+}
+
+function playSound(name) {
+    var sound = game.add.audio(name);
+    sound.play();
+}
+
+function countDown() {
+    tutorialGroup.destroy();
+    titleStart = game.add.sprite(game.world.centerX, game.world.centerY, 'start');
+    titleStart.anchor.x = 0.5;
+    titleStart.anchor.y = 0.5;
+
+    playSound('start');
+
+    var titleTween = game.add.tween(titleStart).to({ alpha: 0 }, 150, Phaser.Easing.Cubic.Out, true, 3000);
+    titleTween.onComplete.add(startGame);
+}
+
 function endGame() {
     uiGroup.destroy();
+    endGameGroup = game.add.group();
     gameStarted = false;
     buttonEnable = false;
 
@@ -340,7 +420,78 @@ function endGame() {
     gameOver.alpha = 0;
     gameOver.anchor.x = 0.5;
     gameOver.anchor.y = 0.5;
+    var overlay = game.add.sprite(0, 0, 'overlay');
+    overlay.width = 972;
+    overlay.height = 564;
+    overlay.alpha = 0;
+    overlay.tint = "#000000";
+    var panel = game.add.sprite(game.world.centerX, game.world.centerY * 5, 'result');
+    panel.anchor.x = 0.5;
+    panel.anchor.y = 0.5;
+
+    var titleStyle = {
+        font: "Dosis",
+        fontWeight: "900",
+        fontSize: "18px",
+        fill: "#85490e",
+        align: "left"
+    };
+
+    var valueStyle = {
+        font: "Dosis",
+        fontWeight: "900",
+        fontSize: "36px",
+        fill: "#ff7e00",
+        align: "center"
+    };
+
+    var skorLabel = game.add.text(-140, -120, "Skor tertinggi kamu adalah:", titleStyle);
+    skorLabel.anchor.x = 0;
+    skorLabel.anchor.y = 0;
+
+    var titleLabel = game.add.text(-140, -30, "Gelar tertinggi kamu adalah:", titleStyle);
+    titleLabel.anchor.x = 0;
+    titleLabel.anchor.y = 0;
+
+    var skorValue = game.add.text(0, -85, score, valueStyle);
+    skorValue.anchor.x = 0.5;
+    skorValue.anchor.y = 0;
+
+    var titleValue = game.add.text(0, 0, currentTitle, valueStyle);
+    titleValue.anchor.x = 0.5;
+    titleValue.anchor.y = 0;
+
+    var playBtn = game.add.button(-10, 50, 'btnMainLagi', function () {
+        click.play();
+        resetGame();
+    }, this);
+    playBtn.anchor.x = 1;
+    playBtn.anchor.y = 0;
+
+    var exitBtn = game.add.button(10, 50, 'btnUdahan', function () {
+        click.play();
+        this.game.state.restart();
+    }, this);
+    exitBtn.anchor.x = 0;
+    exitBtn.anchor.y = 0;
+
+    panel.addChild(skorLabel);
+    panel.addChild(titleLabel);
+    panel.addChild(skorValue);
+    panel.addChild(titleValue);
+    panel.addChild(playBtn);
+    panel.addChild(exitBtn);
+
+    endGameGroup.add(gameOver);
+    endGameGroup.add(overlay);
+    endGameGroup.add(panel);
+
+    game.add.tween(overlay).to({ alpha:0.5}, 300, Phaser.Easing.Cubic.Out, true, 1000);
     game.add.tween(gameOver).to({ alpha:1 }, 500, Phaser.Easing.Cubic.Out, true);
+    var panelTween = game.add.tween(panel).to({ y:game.world.centerY }, 500, Phaser.Easing.Cubic.Out, true, 1000);
+    panelTween.onStart.add(function() {
+        playSound('result');
+    });
 }
 
 function changeButtonSprite(btn, sprite, height) {
@@ -352,7 +503,9 @@ function changeButtonSprite(btn, sprite, height) {
 function createText() {
     //  You can either set the tab size in the style object:
     var style = {
-        font: "92px Dosis",
+        font: "Dosis",
+        fontWeight: "900",
+        fontSize: "92px",
         fill: "#ffec1d",
         align: "center"
     };
@@ -384,10 +537,11 @@ function createText() {
     scoreText = game.add.text(175, 30, "0", scoreStyle);
     scoreText.anchor.x = 1;
 
-    titleText = game.add.text(2500, game.world.centerY, "RAJA MINYAK", style);
+    titleText = game.add.text(2500, game.world.centerY, "•Pemula•", style);
     titleText.setShadow(0, 4.5, 'rgba(66,64,64,0.9)', 10.2);
+    currentTitle = titleText.text;
 
-    bonusTimeText = game.add.text(55, 165, "+5 detik", bonusTimeStyle);
+    bonusTimeText = game.add.text(55, 165, "+2 detik", bonusTimeStyle);
     bonusTimeText.alpha = 0;
 
     uiGroup.add(timer);
@@ -406,6 +560,9 @@ function showTitle(index) {
         titleText.text = "•" + titles[titles.length - 1] + "•";
     }
 
+    currentTitle = titleText.text;
+    titleBoxText.text = currentTitle;
+
     var titleTween = game.add.tween(titleText).to({
         x: game.world.centerX
     }, 1000, Phaser.Easing.Cubic.Out);
@@ -413,6 +570,8 @@ function showTitle(index) {
     var titleHideTween = game.add.tween(titleText).to({
         x: -1000
     }, 1000, Phaser.Easing.Cubic.In, 2000);
+
+    playSound('title');
 
     titleTween.chain(titleHideTween);
     titleTween.start();
@@ -480,6 +639,7 @@ function moveHose1(hose) {
         moveBackHose(hose);
         status1 = true;
         checkRequirements();
+        correct.play();
     }, this);
 }
 
@@ -492,6 +652,7 @@ function moveHose2(hose) {
         moveBackHose(hose);
         status2 = true;
         checkRequirements();
+        correct.play();
     }, this);
 }
 
@@ -514,6 +675,7 @@ function wrongAnswer(hose) {
     }, 50, Phaser.Easing.Quadratic.Out, true);
     // hoseTween.onComplete.add(checkRequirements);
     hoseTween.onComplete.add(function () {
+        incorrect.play();
         moveBackHose(hose);
     }, this);
 }
@@ -532,6 +694,7 @@ function drawBonusTime() {
 }
 
 function buttonOneClick() {
+    click.play();
     if (buttonEnable && !isMaintenance && health1 > 0 && !btn1Maintenance) {
 
         if (requirement1 == 1 && !status1) {
@@ -570,6 +733,7 @@ function repairButton1() {
 }
 
 function buttonTwoClick() {
+    click.play();
     if (buttonEnable && !isMaintenance && health2 > 0 && !btn2Maintenance) {
 
         if (requirement1 == 2 && !status1) {
@@ -608,6 +772,7 @@ function repairButton2() {
 }
 
 function buttonThreeClick() {
+    click.play();
     if (buttonEnable && !isMaintenance && health3 > 0 && !btn3Maintenance) {
 
         if (requirement1 == 3 && !status1) {
@@ -646,6 +811,7 @@ function repairButton3() {
 }
 
 function buttonFourClick() {
+    click.play();
     if (buttonEnable && !isMaintenance && health4 > 0 && !btn4Maintenance) {
 
         if (requirement1 == 4 && !status1) {
@@ -746,8 +912,8 @@ function checkRequirements() {
 
         updateScore();
 
-        if (shipCount % 5 == 0) {
-            showTitle(shipCount / 5);
+        if (shipCount % 10 == 0) {
+            showTitle(shipCount / 10);
         }
     }
 }
