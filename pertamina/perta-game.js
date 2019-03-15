@@ -280,6 +280,11 @@ function startGameInit() {
     score = 0;
     shipCount = 0;
 
+    hose1.y = -100;
+    hose2.y = -100;
+    hose3.y = -100;
+    hose4.y = -100;
+
     uiGroup = game.add.group();
 
     var scorePanel = game.add.sprite(23, 15, 'scorePanel');
@@ -676,7 +681,8 @@ function wrongAnswer(hose) {
     // hoseTween.onComplete.add(checkRequirements);
     hoseTween.onComplete.add(function () {
         incorrect.play();
-        moveBackHose(hose);
+        endGame();
+        // moveBackHose(hose);
     }, this);
 }
 
