@@ -16,7 +16,6 @@ WebFontConfig = {
     google: {
         families: ['Dosis:800']
     }
-
 };
 
 var timer;
@@ -31,8 +30,8 @@ function preload() {
     game.load.image('button2down', 'assets/perta/perta-02-down@3x.png');
     game.load.image('button3down', 'assets/perta/perta-03-down@3x.png');
     game.load.image('button4down', 'assets/perta/perta-04-down@3x.png');
-    game.load.image('buttonMaintenance', 'assets/perta/placeholder/maintenance-button.png');
-    game.load.image('buttonMaintenanceCancel', 'assets/perta/placeholder/maintenance-button-cancel.png');
+    // game.load.image('buttonMaintenance', 'assets/perta/placeholder/maintenance-button.png');
+    // game.load.image('buttonMaintenanceCancel', 'assets/perta/placeholder/maintenance-button-cancel.png');
     game.load.image('background', 'assets/perta/bg.png');
     game.load.image('ship', 'assets/perta/kapal.png');
     game.load.image('flag1', 'assets/perta/flag-01.png');
@@ -58,11 +57,17 @@ function preload() {
     game.load.image('icon6', 'assets/perta/siluet-02-b.png');
     game.load.image('icon7', 'assets/perta/siluet-03-b.png');
     game.load.image('icon8', 'assets/perta/siluet-04-b.png');
-    game.load.image('icon9', 'assets/perta/placeholder/solar-pertalite-icon.png');
-    game.load.image('icon10', 'assets/perta/placeholder/pertamax-pertalite-icon.png');
+    // game.load.image('icon9', 'assets/perta/placeholder/solar-pertalite-icon.png');
+    // game.load.image('icon10', 'assets/perta/placeholder/pertamax-pertalite-icon.png');
+    game.load.image('wrong', 'assets/perta/fx-wrong.png');
+    game.load.image('title', 'assets/perta/title-sitoha@2x.png');
+    game.load.image('btnMain', 'assets/perta/btn-main.png');
+    game.load.image('tutorial', 'assets/perta/box-tutorial.png');
+    game.load.image('btnPlay', 'assets/perta/btn-ngerti.png');
+    game.load.image('btnMales', 'assets/perta/btn-males.png');
+    game.load.image('gameOver', 'assets/perta/title-over.png');
 
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-
 
 }
 
@@ -87,8 +92,10 @@ var isMaintenance;
 var btn1Maintenance, btn2Maintenance, btn3Maintenance, btn4Maintenance;
 var hose1, hose2, hose3, hose4;
 var uiGroup, gameGroup, hoseGroup;
-var titleText;
+var titleText, bonusTimeText;
 var flag1, flag2;
+var wrongFx;
+var mainMenuGroup, tutorialGroup, endingGroup;
 
 var startTime = new Date();
 
@@ -98,13 +105,14 @@ var score = 0;
 var shipCount = 0;
 
 var titles
+var gameStarted = false;
 
 function create() {
-    totalTime = 120;
+    totalTime = 5;
     timeElapsed = 0;
     score = 0;
     shipCount;
-    titles = ["Pemula","Ngerti Maen","Mulai Bisaan","Boleh Dipuji","Awas Keringetan","Jago Dikit","Jago Dikit +1","Jago Banyak","Pemain Serius","Pemain Veteran","Pejuang Tangguh","Calon Juara","Juara Kelas","Sarjana IPK 4","Petugas Beneran","Jempol Emas","Pantas Dikeceng","Tebar Pesona","Idol Komplek","Raja Minyak","Jelmaan Si Toha","Udahan Woy Mainnya"]
+    titles = ["Pemula", "Ngerti Maen", "Mulai Bisaan", "Boleh Dipuji", "Awas Keringetan", "Jago Dikit", "Jago Dikit +1", "Jago Banyak", "Pemain Serius", "Pemain Veteran", "Pejuang Tangguh", "Calon Juara", "Juara Kelas", "Sarjana IPK 4", "Petugas Beneran", "Jempol Emas", "Pantas Dikeceng", "Tebar Pesona", "Idol Komplek", "Raja Minyak", "Jelmaan Si Toha", "Udahan Woy Mainnya"]
 
     maxHealth = 5;
     health1 = maxHealth;
@@ -125,60 +133,17 @@ function create() {
     background.width = 972;
     background.height = 564;
 
-    gameGroup = game.add.group();
     uiGroup = game.add.group();
     hoseGroup = game.add.group();
-
-    var rand = chooseShip();
-    spawnShip(rand);
+    mainMenuGroup = game.add.group();
+    tutorialGroup = game.add.group();
+    gameGroup = game.add.group();
+    endingGroup = game.add.group();
 
     // buttonMaintenance = game.add.button(15, game.world.height - 135, 'buttonMaintenance', maintenance, this);
     // buttonMaintenance.scale.setTo(0.75, 0.75);
 
-    button1 = game.add.button(20, game.world.height - 120, 'button1', buttonOneClick, this);
-    button1.anchor.y = 0;
-    button1.anchor.x = 0;
-    button1.onInputUp.add(function() {
-        changeButtonSprite(button1, 'button1');
-    });
-    button1.onInputDown.add(function() {
-        changeButtonSprite(button1, 'button1down');
-    });
-    button1.width = 205;
-    button1.height = 120;
-    button2 = game.add.button(20 + (250), game.world.height - 120, 'button2', buttonTwoClick, this);
-    button2.anchor.y = 0;
-    button2.anchor.x = 0;
-    button2.onInputUp.add(function() {
-        changeButtonSprite(button2, 'button2');
-    });
-    button2.onInputDown.add(function() {
-        changeButtonSprite(button2, 'button2down');
-    });
-    button1.width = 205;
-    button1.height = 120;
-    button3 = game.add.button(game.world.width - 260, game.world.height - 120, 'button3', buttonThreeClick, this);
-    button3.anchor.y = 0;
-    button3.anchor.x = 1;
-    button3.onInputUp.add(function() {
-        changeButtonSprite(button3, 'button3');
-    });
-    button3.onInputDown.add(function() {
-        changeButtonSprite(button3, 'button3down');
-    });
-    button3.width = 205;
-    button3.height = 120;
-    button4 = game.add.button(game.world.width - 20, game.world.height - 120, 'button4', buttonFourClick, this);
-    button4.anchor.y = 0;
-    button4.anchor.x = 1;
-    button4.onInputUp.add(function() {
-        changeButtonSprite(button4, 'button4');
-    });
-    button4.onInputDown.add(function() {
-        changeButtonSprite(button4, 'button4down');
-    });
-    button4.width = 205;
-    button4.height = 120;
+
     // button2 = game.add.button(120 + (205 * 1), game.world.height - 135, 'button2', buttonTwoClick, this);
     // button3 = game.add.button(120 + (205 * 2), game.world.height - 135, 'button3', buttonThreeClick, this);
     // button4 = game.add.button(120 + (205 * 3), game.world.height - 135, 'button4', buttonFourClick, this);
@@ -226,10 +191,14 @@ function create() {
     var timerPanel = game.add.sprite(23, 85, 'timerPanel');
     timerPanel.scale.setTo(0.35, 0.35);
 
-    var orderPanel = game.add.sprite(game.world.width - 13, 21.5, 'panel');
-    orderPanel.width = 210;
-    orderPanel.height = 120.5;
-    orderPanel.anchor.x = 1;
+    // var orderPanel = game.add.sprite(game.world.width - 13, 21.5, 'panel');
+    // orderPanel.width = 210;
+    // orderPanel.height = 120.5;
+    // orderPanel.anchor.x = 1;
+
+    wrongFx = game.add.sprite(0, 0, 'wrong');
+    wrongFx.alpha = 0;
+    wrongFx.y = 150;
 
     hoseGroup.add(hose1);
     hoseGroup.add(hose2);
@@ -237,34 +206,155 @@ function create() {
     hoseGroup.add(hose4);
 
     // uiGroup.add(buttonMaintenance);
-    uiGroup.add(button1);
-    uiGroup.add(button2);
-    uiGroup.add(button3);
-    uiGroup.add(button4);
+
     // uiGroup.add(mask1);
     // uiGroup.add(mask2);
     // uiGroup.add(mask3);
     // uiGroup.add(mask4);
     uiGroup.add(scorePanel);
     uiGroup.add(timerPanel);
-    uiGroup.add(orderPanel);
+    // uiGroup.add(orderPanel);
+    uiGroup.add(wrongFx);
+    uiGroup.alpha = 0;
     game.world.bringToTop(uiGroup);
+
+    buttonEnable = false;
+
+    var playBtn = game.add.button(0, 0, 'btnMain', function () {
+        showTutorial();
+    }, this);
+    playBtn.anchor.x = 0.5;
+    playBtn.anchor.y = 0.5;
+    playBtn.x = game.world.centerX;
+    playBtn.y = game.world.centerY + 175;
+    mainMenuGroup.add(playBtn);
+    var titleSprite = game.add.sprite(0, 0, 'title');
+    titleSprite.anchor.x = 0.5;
+    titleSprite.anchor.y = 0.5;
+    titleSprite.x = game.world.centerX;
+    titleSprite.y = game.world.centerY + 35;
+    titleSprite.width = 611;
+    titleSprite.height = 165;
+    mainMenuGroup.add(titleSprite);
+}
+
+function showTutorial() {
+    mainMenuGroup.destroy();
+
+    var tutorialPanel = game.add.sprite(0, 0, 'tutorial');
+    tutorialPanel.anchor.x = 0.5;
+    tutorialPanel.anchor.y = 0.5;
+    tutorialPanel.x = game.world.centerX;
+    tutorialPanel.y = game.world.centerY - 35;
+    var playBtn = game.add.button(game.world.centerX + 90, game.world.centerY + 135, 'btnPlay', function () {
+        startGame();
+    }, this);
+    var backButton = game.add.button(180, game.world.centerY + 135, 'btnMales', function () {
+        this.game.state.restart();
+    }, this);
+
+    tutorialGroup.add(tutorialPanel);
+    tutorialGroup.add(playBtn);
+    tutorialGroup.add(backButton);
+}
+
+function startGameInit() {
+    button1 = game.add.button(20, game.world.height, 'button1', buttonOneClick, this);
+    button1.anchor.y = 1;
+    button1.anchor.x = 0;
+    button1.onInputUp.add(function () {
+        changeButtonSprite(button1, 'button1', 120);
+    });
+    button1.onInputDown.add(function () {
+        changeButtonSprite(button1, 'button1down', 105);
+    });
+    button1.width = 205;
+    button1.height = 120;
+    button2 = game.add.button(20 + (250), game.world.height, 'button2', buttonTwoClick, this);
+    button2.anchor.y = 1;
+    button2.anchor.x = 0;
+    button2.onInputUp.add(function () {
+        changeButtonSprite(button2, 'button2', 120);
+    });
+    button2.onInputDown.add(function () {
+        changeButtonSprite(button2, 'button2down', 105);
+    });
+    button1.width = 205;
+    button1.height = 120;
+    button3 = game.add.button(game.world.width - 260, game.world.height, 'button3', buttonThreeClick, this);
+    button3.anchor.y = 1;
+    button3.anchor.x = 1;
+    button3.onInputUp.add(function () {
+        changeButtonSprite(button3, 'button3', 120);
+    });
+    button3.onInputDown.add(function () {
+        changeButtonSprite(button3, 'button3down', 105);
+    });
+    button3.width = 205;
+    button3.height = 120;
+    button4 = game.add.button(game.world.width - 20, game.world.height, 'button4', buttonFourClick, this);
+    button4.anchor.y = 1;
+    button4.anchor.x = 1;
+    button4.onInputUp.add(function () {
+        changeButtonSprite(button4, 'button4', 120);
+    });
+    button4.onInputDown.add(function () {
+        changeButtonSprite(button4, 'button4down', 105);
+    });
+    button4.width = 205;
+    button4.height = 120;
+
+    uiGroup.add(button1);
+    uiGroup.add(button2);
+    uiGroup.add(button3);
+    uiGroup.add(button4);
+}
+
+function startGame() {
+    tutorialGroup.destroy();
+    startGameInit();
+
+    gameStarted = true;
+
+    buttonEnable = true;
+
+    uiGroup.alpha = 1;
+    startTime = new Date();
+
+    game.time.events.loop(100, function () {
+        updateTimer();
+    });
+
+    var rand = chooseShip();
+    spawnShip(rand);
 
     initQueue();
 }
 
-function changeButtonSprite(btn, sprite) {
+function endGame() {
+    uiGroup.destroy();
+    gameStarted = false;
+    buttonEnable = false;
+
+    var gameOver = game.add.sprite(game.world.centerX, game.world.centerY, 'gameOver');
+    gameOver.alpha = 0;
+    gameOver.anchor.x = 0.5;
+    gameOver.anchor.y = 0.5;
+    game.add.tween(gameOver).to({ alpha:1 }, 500, Phaser.Easing.Cubic.Out, true);
+}
+
+function changeButtonSprite(btn, sprite, height) {
     btn.loadTexture(sprite);
     btn.width = 205;
-    btn.height = 120;
+    btn.height = height;
 }
 
 function createText() {
     //  You can either set the tab size in the style object:
     var style = {
-        font: "28px Dosis",
-        fill: "#fff",
-        tabs: [150, 150, 200]
+        font: "92px Dosis",
+        fill: "#ffec1d",
+        align: "center"
     };
     var scoreStyle = {
         font: "Dosis",
@@ -280,6 +370,13 @@ function createText() {
         fill: "#e94836",
         align: "right"
     };
+    var bonusTimeStyle = {
+        font: "Dosis",
+        fontWeight: "900",
+        fontSize: "30px",
+        fill: "#38db29",
+        align: "center"
+    };
 
     timer = game.add.text(175, 100, "00:00", timerStyle);
     timer.anchor.x = 1;
@@ -288,17 +385,14 @@ function createText() {
     scoreText.anchor.x = 1;
 
     titleText = game.add.text(2500, game.world.centerY, "RAJA MINYAK", style);
-    // titleText = titles[0];
+    titleText.setShadow(0, 4.5, 'rgba(66,64,64,0.9)', 10.2);
+
+    bonusTimeText = game.add.text(55, 165, "+5 detik", bonusTimeStyle);
+    bonusTimeText.alpha = 0;
 
     uiGroup.add(timer);
     uiGroup.add(scoreText);
     uiGroup.add(titleText);
-
-    startTime = new Date();
-
-	var gameTimer = game.time.events.loop(100, function(){
-		updateTimer();
-	});
 }
 
 function showTitle(index) {
@@ -306,10 +400,10 @@ function showTitle(index) {
     titleText.anchor.x = 0.5;
     titleText.anchor.y = 0.5;
 
-    if(index < titles.length) {
-        titleText.text = titles[index];
+    if (index < titles.length) {
+        titleText.text = "•" + titles[index] + "•";
     } else {
-        titleText.text = titles[titles.length - 1];
+        titleText.text = "•" + titles[titles.length - 1] + "•";
     }
 
     var titleTween = game.add.tween(titleText).to({
@@ -325,27 +419,33 @@ function showTitle(index) {
 }
 
 function updateTimer() {
+    if (gameStarted) {
 
-    var currentTime = new Date();
-    var timeDifference = startTime.getTime() - currentTime.getTime();
+        var currentTime = new Date();
+        var timeDifference = startTime.getTime() - currentTime.getTime();
 
-    //Time elapsed in seconds
-    timeElapsed = Math.abs(timeDifference / 1000);
+        //Time elapsed in seconds
+        timeElapsed = Math.abs(timeDifference / 1000);
 
-    //Time remaining in seconds
-    var timeRemaining = totalTime - timeElapsed;
+        //Time remaining in seconds
+        var timeRemaining = totalTime - timeElapsed;
 
-    //Convert seconds into minutes and seconds
-    var minutes = Math.floor(timeRemaining / 60);
-    var seconds = Math.floor(timeRemaining) - (60 * minutes);
+        //Convert seconds into minutes and seconds
+        var minutes = Math.floor(timeRemaining / 60);
+        var seconds = Math.floor(timeRemaining) - (60 * minutes);
 
-    //Display minutes, add a 0 to the start if less than 10
-    var result = (minutes < 10) ? "0" + minutes : minutes;
+        //Display minutes, add a 0 to the start if less than 10
+        var result = (minutes < 10) ? "0" + minutes : minutes;
 
-    //Display seconds, add a 0 to the start if less than 10
-    result += (seconds < 10) ? ":0" + seconds : ":" + seconds;
+        //Display seconds, add a 0 to the start if less than 10
+        result += (seconds < 10) ? ":0" + seconds : ":" + seconds;
 
-    timer.text = result;
+        timer.text = result;
+
+        if(timeRemaining < 0) {
+            endGame();
+        }
+    }
 }
 
 function updateScore() {
@@ -355,7 +455,7 @@ function updateScore() {
 function processComplete() {
     tween = game.add.tween(ship).to({
         x: -ship.width
-    }, 2500, Phaser.Easing.Quadratic.In, true, 500);
+    }, 200, Phaser.Easing.Quadratic.In, true, 200);
     tween.onComplete.add(onCompleteMoveShip, this);
 }
 
@@ -374,7 +474,7 @@ function moveMask(mask, value) {
 function moveHose1(hose) {
     var hoseTween = game.add.tween(hose).to({
         y: 0
-    }, 1000, Phaser.Easing.Linear.None, true);
+    }, 50, Phaser.Easing.Quadratic.Out, true);
     // hoseTween.onComplete.add(checkRequirements);
     hoseTween.onComplete.add(function () {
         moveBackHose(hose);
@@ -386,7 +486,7 @@ function moveHose1(hose) {
 function moveHose2(hose) {
     var hoseTween = game.add.tween(hose).to({
         y: 0
-    }, 1000, Phaser.Easing.Linear.None, true);
+    }, 50, Phaser.Easing.Quadratic.Out, true);
     // hoseTween.onComplete.add(checkRequirements);
     hoseTween.onComplete.add(function () {
         moveBackHose(hose);
@@ -398,8 +498,37 @@ function moveHose2(hose) {
 function moveBackHose(hose) {
     var hoseBackTween = game.add.tween(hose).to({
         y: -100
-    }, 1000, Phaser.Easing.Linear.None, true, 500);
+    }, 50, Phaser.Easing.Quadratic.In, true, 200);
     // hoseBackTween.onComplete.add();
+}
+
+function wrongAnswer(hose) {
+    wrongFx.x = hose.x - 10;
+    wrongFx.alpha = 1;
+    game.camera.shake(0.006, 75);
+    game.add.tween(wrongFx).to({
+        alpha: 0
+    }, 50, Phaser.Easing.Linear.None, true, 200);
+    var hoseTween = game.add.tween(hose).to({
+        y: 0
+    }, 50, Phaser.Easing.Quadratic.Out, true);
+    // hoseTween.onComplete.add(checkRequirements);
+    hoseTween.onComplete.add(function () {
+        moveBackHose(hose);
+    }, this);
+}
+
+function drawBonusTime() {
+    bonusTimeText.y = 165;
+    bonusTimeText.alpha = 1;
+    game.add.tween(bonusTimeText).to({
+        alpha: 0,
+        y: 130
+    }, 150, Phaser.Easing.Quadratic.In, true);
+    // game.add.tween(bonusTimeText).to({
+
+    // }, 50, Phaser.Easing.Quadratic.In, true);
+
 }
 
 function buttonOneClick() {
@@ -417,8 +546,10 @@ function buttonOneClick() {
 
             // moveMask(mask1, mask1.y + (button1.height / maxHealth))
             moveHose2(hose1);
-        } else if(requirement1 != 1 && requirement2 != 1) {
+        } else if (requirement1 != 1 && requirement2 != 1) {
             score -= 50;
+
+            wrongAnswer(hose1);
 
             updateScore();
         }
@@ -453,8 +584,10 @@ function buttonTwoClick() {
 
             // moveMask(mask2, mask2.y + (button2.height / maxHealth));
             moveHose2(hose2);
-        } else if(requirement1 != 2 && requirement2 != 2) {
+        } else if (requirement1 != 2 && requirement2 != 2) {
             score -= 50;
+
+            wrongAnswer(hose2);
 
             updateScore();
         }
@@ -489,8 +622,10 @@ function buttonThreeClick() {
 
             // moveMask(mask3, mask3.y + (button3.height / maxHealth));
             moveHose2(hose3);
-        } else if(requirement1 != 3 && requirement2 != 3) {
+        } else if (requirement1 != 3 && requirement2 != 3) {
             score -= 50;
+
+            wrongAnswer(hose3);
 
             updateScore();
         }
@@ -525,8 +660,10 @@ function buttonFourClick() {
 
             // moveMask(mask4, mask4.y + (button4.height / maxHealth));
             moveHose2(hose4);
-        } else if(requirement1 != 4 && requirement2 != 4) {
+        } else if (requirement1 != 4 && requirement2 != 4) {
             score -= 50;
+
+            wrongAnswer(hose4);
 
             updateScore();
         }
@@ -559,7 +696,7 @@ function spawnShip(shipType) {
     drawFlag();
     tween = game.add.tween(ship).to({
         x: game.world.centerX - 384
-    }, 2000, Phaser.Easing.Quadratic.Out, true, 1000);
+    }, 150, Phaser.Easing.Quadratic.Out, true, 50);
     tween.onComplete.add(onCompleteMoveShipMid);
     buttonEnable = false;
 
@@ -572,7 +709,7 @@ function drawFlag() {
     var reqs = getRequirement(currentQueue);
     var req2 = reqs[0] + 4;
 
-    if(reqs.length > 1) {
+    if (reqs.length > 1) {
         req2 = reqs[1];
     }
 
@@ -601,13 +738,15 @@ function checkRequirements() {
         status2 = false;
         buttonEnable = false;
 
-        totalTime += 5;
+        totalTime += 2;
         score += 100;
         shipCount++;
 
+        drawBonusTime();
+
         updateScore();
 
-        if(shipCount % 5 == 0) {
+        if (shipCount % 5 == 0) {
             showTitle(shipCount / 5);
         }
     }
@@ -628,7 +767,7 @@ function initQueue() {
     var third = getType(three);
     queue = [one, two, three];
 
-    drawQueue();
+    // drawQueue();
 }
 
 function nextQueue() {
@@ -637,7 +776,7 @@ function nextQueue() {
     queue[0] = queue[1];
     queue[1] = queue[2];
     queue[2] = chooseShip();
-    drawQueue();
+    // drawQueue();
 }
 
 function drawQueue() {
@@ -649,7 +788,7 @@ function drawQueue() {
         reqs1 = getRequirement(queue[i]);
         game.add.sprite(x, 70, "icon" + reqs1[0]);
         req2 = reqs1[0] + 4;
-        if(reqs1.length > 1)
+        if (reqs1.length > 1)
             req2 = reqs1[1];
 
         game.add.sprite(x - 23, 76, "icon" + req2);
