@@ -131,6 +131,8 @@ var shipCount = 0;
 var titles
 var gameStarted = false;
 
+var countToWhite = 30;
+
 function create() {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
     game.scale.startFullScreen();
@@ -292,6 +294,11 @@ function startGameInit() {
     hose2.y = -100;
     hose3.y = -100;
     hose4.y = -100;
+
+    hose1.loadTexture("hose1");
+    hose2.loadTexture("hose2");
+    hose3.loadTexture("hose3");
+    hose4.loadTexture("hose4");
 
     uiGroup = game.add.group();
 
@@ -513,12 +520,15 @@ function changeButtonToWhiteInit() {
     button3.loadTexture("button3w");
     button4.loadTexture("button4w");
 
-    console.log("hey");
+    hose1.loadTexture("hose2");
+    hose2.loadTexture("hose2");
+    hose3.loadTexture("hose2");
+    hose4.loadTexture("hose2");
 }
 
 function changeButtonSprite(btn, sprite, height) {
     white = "";
-    if(shipCount >= 30)
+    if(shipCount >= countToWhite)
         white = "w";
     btn.loadTexture(sprite + white);
     btn.width = 205;
@@ -934,7 +944,7 @@ function checkRequirements() {
         score += 100;
         shipCount++;
 
-        if(shipCount >= 30)
+        if(shipCount >= countToWhite)
             changeButtonToWhiteInit();
 
         drawBonusTime();
