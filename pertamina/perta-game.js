@@ -30,6 +30,14 @@ function preload() {
     game.load.image('button2down', 'assets/perta/perta-02-down@3x.png');
     game.load.image('button3down', 'assets/perta/perta-03-down@3x.png');
     game.load.image('button4down', 'assets/perta/perta-04-down@3x.png');
+    game.load.image('button1w', 'assets/perta/perta-01-up-white.png');
+    game.load.image('button2w', 'assets/perta/perta-02-up-white.png');
+    game.load.image('button3w', 'assets/perta/perta-03-up-white.png');
+    game.load.image('button4w', 'assets/perta/perta-04-up-white.png');
+    game.load.image('button1downw', 'assets/perta/perta-01-down-white@3x.png');
+    game.load.image('button2downw', 'assets/perta/perta-02-down-white@3x.png');
+    game.load.image('button3downw', 'assets/perta/perta-03-down-white@3x.png');
+    game.load.image('button4downw', 'assets/perta/perta-04-down-white@3x.png');
     // game.load.image('buttonMaintenance', 'assets/perta/placeholder/maintenance-button.png');
     // game.load.image('buttonMaintenanceCancel', 'assets/perta/placeholder/maintenance-button-cancel.png');
     game.load.image('background', 'assets/perta/bg.png');
@@ -499,8 +507,20 @@ function endGame() {
     });
 }
 
+function changeButtonToWhiteInit() {
+    button1.loadTexture("button1w");
+    button2.loadTexture("button2w");
+    button3.loadTexture("button3w");
+    button4.loadTexture("button4w");
+
+    console.log("hey");
+}
+
 function changeButtonSprite(btn, sprite, height) {
-    btn.loadTexture(sprite);
+    white = "";
+    if(shipCount >= 30)
+        white = "w";
+    btn.loadTexture(sprite + white);
     btn.width = 205;
     btn.height = height;
 }
@@ -913,6 +933,9 @@ function checkRequirements() {
         totalTime += 2;
         score += 100;
         shipCount++;
+
+        if(shipCount >= 30)
+            changeButtonToWhiteInit();
 
         drawBonusTime();
 
