@@ -1,0 +1,13 @@
+{
+"companyName": "kuswadi",
+"productName": "Relic of Equations",
+"dataUrl": "equation.data.unityweb",
+"wasmCodeUrl": "equation.wasm.code.unityweb",
+"wasmFrameworkUrl": "equation.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}
