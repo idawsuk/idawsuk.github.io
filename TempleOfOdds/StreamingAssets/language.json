@@ -18,17 +18,16 @@
      "array-tutor7":"1 x 2 is 2, there's two zeros so that means the result is 200",
      "array-tutor6":"Here's a tip, understanding that when we multiply using zero, we can count the number of zeros to add for later.",
      "array-tutor5":"Now we're set up for the next step, multiplication.",
-     "array-tutor4":"And the 2 in 24 is in the tens place so it's worth 20 (two tens).",
+     "array-tutor4":"And the 2 in 24 is in the tens place so it's worth 20 ( two tens).",
      "array-tutor3":"Each number here has a place value, for example the 4 in 24 means there is four ones. ",
-     "array-tutor2":"Good job! In order to solve the puzzle, we need to know the product of (12 x 24).",
+     "array-tutor2":"Good job! In order to solve the puzzle, we need to know the product of ( 12 x 24 ).",
      "array-tutor13":"Let's proceed to the next door!",
      "array-tutor12":"Nicely done! By understanding this method, we know that 12 x 24 is 288.",
      "array-tutor11":"Now we add these numbers.",
      "array-tutor10":"Here lies the partial product segment, these are the numbers we got from the previous process.",
      "array-tutor1":"Look the first puzzle! Let's put some gems in each slot.",
      "array-game-2":"Nice one!",
-     "array-game-1":"Let's apply what we've learned and solve this puzzle.",
-     "none":""
+     "array-game-1":"Let's apply what we've learned and solve this puzzle."
   },
   "_meta":{
      "maxChars":{
@@ -59,8 +58,7 @@
         "array-tutor10":300,
         "array-tutor1":300,
         "array-game-2":300,
-        "array-game-1":300,
-        "none":0
+        "array-game-1":300
      }
   }
 }
