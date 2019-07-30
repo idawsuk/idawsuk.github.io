@@ -27,7 +27,8 @@
      "array-tutor10":"Here lies the partial product segment, these are the numbers we got from the previous process.",
      "array-tutor1":"Look the first puzzle! Let's put some gems in each slot.",
      "array-game-2":"Nice one!",
-     "array-game-1":"Let's apply what we've learned and solve this puzzle."
+     "array-game-1":"Let's apply what we've learned and solve this puzzle.",
+     "none":""
   },
   "_meta":{
      "maxChars":{
@@ -58,7 +59,8 @@
         "array-tutor10":300,
         "array-tutor1":300,
         "array-game-2":300,
-        "array-game-1":300
+        "array-game-1":300,
+        "none":0
      }
   }
 }
