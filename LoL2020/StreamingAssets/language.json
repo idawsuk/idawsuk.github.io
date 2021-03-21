@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "maxChars": {
+      "welcome": 20,
+      "readyToPlay": 20,
+      "pressContinue": 50,
+      "greatJob": 20,
+      "onePlusOne": 30
+    }
+  },
+  "en": {
+    "welcome1": "Hello there, welcome to the Fruit Fruit Warehouse, I'm Toby, your guide on this wonderful endeavor.",
+    "welcome2": "Currently our warehouse needs all the help we can get to deliver this boxes of fruit to our client.",
+    "controlTutorial1": "I think you are the right person to handle this job! But first let's pick up to one of the fruit box.",
+    "controlTutorial2": "Now lets put the box on the <b>grid</b>.",
+    "controlTutorial3": "Great, let's get to the next room!",
+    "mechanicTutorial1": "As you can see, the apple boxes have 3 apples inside them.",
+    "mechanicTutorial2": "Our job here is to make sure the have the correct amount of fruit to deliver.",
+    "mechanicTutorial3": "Now let's try putting one box in every <b>grid</b>.",
+    "mechanicTutorial4": "Great job putting those boxes!",
+    "mechanicTutorial5": "Since we sorted 5 boxes into the grid lets determine how many apples are there.",
+    "mechanicTutorial6": "You're a natural! Let's proceed to the next room!",
+    "gameTutorial1": "Now this is interesting, so each type of box have the same quantity inside them.",
+    "gameTutorial2": "Each box category have 5 fruits in them",
+    "gameTutorial3": "Let's try aligning them first on the grid.",
+    "gameTutorial4": "Now all we have to do is to determine how many fruits are there.",
+    "gameTutorial5": "I know you could do it, great work!",
+    "gameStart": "Now to the real thing, let's ship some fruits!",
+    "challenge1": "Determined how many fruits are there!",
+    "challenge2": "Determined how many box required to fulfill the order!",
+    "question": "How many ",
+    "questionMore": "more",
+    "questionLess": "less",
+    "questionTo" : "to",
+    "apple": "apple",
+    "banana": "banana",
+    "orange": "orange",
+    "papaya": "papaya",
+    "apples": "apples",
+    "bananas": "bananas",
+    "oranges": "oranges",
+    "papayas": "papayas",
+    "progression1": "Great job! Let's get moving.",
+    "progression2": "Nice work! It's time for the next one!",
+    "progression3": "You're a natural, orders are almost completed!",
+    "progression4": "Awesome! You've completed all of the orders, thank you for helping! Until next time.",
+    "fruitPerBox": "Box have %s fruits inside."
+  }
+}
