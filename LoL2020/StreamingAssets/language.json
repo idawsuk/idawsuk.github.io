@@ -19,7 +19,7 @@
 	"mechanicTutorial21": "Let's get some boxes from the dispenser over there.",
     "mechanicTutorial3": "Great! Now sort some boxes on the <b>panels</b>.",
     "mechanicTutorial4": "Great job putting those boxes!",
-    "mechanicTutorial5": "Since we've sorted 5 boxes into the grid lets determine how many apples are there.",
+    "mechanicTutorial5": "Since we've sorted 5 boxes into the panels lets determine how many apples are there.",
 	"mechanicTutorial51": "You can input the numbers on the <b>number pad</b>.",
     "mechanicTutorial6": "You're a natural! Let's proceed to the next room!",
     "gameTutorial1": "Looks like we got a different type of fruit box to the deliver.",
@@ -38,10 +38,8 @@
     "challenge1": "You've learned the basics,and I think you're ready!",
 	"challenge11": "Let's ship some fruits!",
     "challenge2": "Determined how many box required to fulfill the order!",
-    "question": "How many ",
-    "questionMore": "more",
-    "questionLess": "less",
-    "questionTo" : "to",
+    "questionMore": "How many more %fruit1 to %fruit2",
+    "questionLess": "How many less %fruit1 to %fruit2",
     "apple": "apple",
     "banana": "banana",
     "orange": "orange",
@@ -57,6 +55,11 @@
     "progression2": "Nice work! It's time for the next one!",
     "progression3": "All orders are almost completed! Let's get to it!",
     "progression4": "Awesome! You've completed all of the orders, thank you for helping! Until next time.",
-    "fruitPerBox": "Box have %s fruits inside."
+    "fruitPerBox": "Box have %s fruits inside.",
+    "credits": "Credits:",
+    "newGame": "New Game",
+    "continueGame": "Continue",
+    "thankYou": "Thank You For Playing!",
+    "orders": "Orders\n to complete"
   }
 }

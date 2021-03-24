@@ -1,7 +1,7 @@
 {
-"companyName": "Kuswadi",
-"productName": "LoL-Math-2020",
-"productVersion": "0.1",
+"companyName": "Erri Kuswadi",
+"productName": "Fruit Fruit Warehouse",
+"productVersion": "1.0.0",
 "dataUrl": "LoL2020.data.unityweb",
 "wasmCodeUrl": "LoL2020.wasm.code.unityweb",
 "wasmFrameworkUrl": "LoL2020.wasm.framework.unityweb",
