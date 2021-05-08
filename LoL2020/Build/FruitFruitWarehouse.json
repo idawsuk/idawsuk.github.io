@@ -1,7 +1,7 @@
 {
 "companyName": "Erri Kuswadi",
 "productName": "Fruit Fruit Warehouse",
-"productVersion": "1.0.0",
+"productVersion": "1.1.0",
 "dataUrl": "FruitFruitWarehouse.data.unityweb",
 "wasmCodeUrl": "FruitFruitWarehouse.wasm.code.unityweb",
 "wasmFrameworkUrl": "FruitFruitWarehouse.wasm.framework.unityweb",
