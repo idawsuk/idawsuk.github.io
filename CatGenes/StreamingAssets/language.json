@@ -1,51 +1,41 @@
 {
   "_meta": {
-    "maxChars": {
-      "welcome": 20,
-      "readyToPlay": 20,
-      "pressContinue": 50,
-      "greatJob": 20,
-      "onePlusOne": 30
-    }
   },
   "en": {
-    "welcome": "Welcome!",
-    "readyToPlay": "Are you ready to play?",
-    "greatJob": "Great job!",
-    "pressContinue": "Press the next button to continue.",
-    "onePlusOne": "One + One = Two",
-    "newGame": "New Game",
-    "continue": "Continue",
-    "pantry": "Pantry",
-    "purchasePan": "Purchase Pan  <color=#F9DD3B>{0}</color>",
-    "autoSave": "...Auto Saving Complete"
-  },
-  "es": {
-    "welcome": "¡Bienvenido!",
-    "readyToPlay": "¿Estás listo para jugar?",
-    "greatJob": "¡Gran trabajo!",
-    "pressContinue": "Presione el botón 'siguiente' para continuar.",
-    "onePlusOne": "Uno + Uno = Dos"
-  },
-  "zh": {
-    "welcome": "欢迎！",
-    "readyToPlay": "你准备好玩吗",
-    "greatJob": "做得好！",
-    "pressContinue": "按“下一步”按钮继续。",
-    "onePlusOne": "一+一=二"
-  },
-  "jp": {
-    "welcome": "ようこそ!",
-    "readyToPlay": "あなたは遊ぶ準備ができていますか？",
-    "greatJob": "よくやった！",
-    "pressContinue": "続行するには '次へ'ボタンを押してください。",
-    "onePlusOne": "1 + 1 = 2"
-  },
-  "ru": {
-    "welcome": "Добро пожаловать!",
-    "readyToPlay": "Вы готовы играть?",
-    "greatJob": "Отличная работа!",
-    "pressContinue": "Нажмите следующую кнопку, чтобы продолжить.",
-    "onePlusOne": "один + один"
+    "D0_INTRO_1": "Hello there~ Welcome to Cat Genes.",
+    "D0_INTRO_2": "I'm Robin, are you the one that will help me? Let's get started~",
+    "D1_OBJ_0": "Here, people will request cats with different appearances. Your job is to differentiate them using their genotype.",
+    "D1_OBJ_1": "The genotype is a part (DNA sequence) of the genetic makeup of a cell, and therefore of an organism or individual, which determines a specific characteristic (phenotype) of that cell/individual.",
+    "D1_OBJ_2": "If there's a suitable cat for the request, you can put it in the cat carrier.",
+    "D1_OBJ_3": "If there are no suitable cats for the request, you can throw the cats offscreen, or breed them until you get the one you are looking for.",
+    "D1_OBJ_4": "When breeding a cat, be sure to check their alleles so their offspring are as expected.",
+    "D1_OBJ_5": "Let's begin!",
+    "D1_EXPL_1": "Good, allele <color=#2c6a75>B</color> is responsible for the coat color black. It is a dominant phenotype.",
+    "D1_EXPL_2": "The chocolate phenotype is recessive to black. It is controlled by the <color=#2c6a75>b</color> allele. A cat with genotype <color=#2c6a75>bb</color> or <color=#2c6a75>bbl</color> can be chocolate colored.",
+    "D1_EXPL_3": "The cinnamon coat color is recessive to both black and chocolate coat color. A cat must carry two copies of the <color=#2c6a75>bl</color> allele to show a cinnamon coat.",
+    "D2_EXPL_1": "Nice, the tabby pattern of stripes is a dominant phenotype controlled by the <color=#2c6a75>A</color> allele.",
+    "D2_EXPL_2": "Cats with either a <color=#2c6a75>AA</color> or <color=#2c6a75>Aa</color> genotype will be tabby cats, while cats with <color=#2c6a75>aa</color> genotype will be non-stripe cats.",
+    "D3_EXPL_1": "Splendid! White spotting is a dominant phenotype controlled by the <color=#2c6a75>S</color> allele.",
+    "D3_EXPL_2": "A cat with either a <color=#2c6a75>SS</color> or <color=#2c6a75>Ss</color> genotype will show white spotting.",
+    "D3_POST_EXPL": "It's seems you're getting a hang of this, keep it up!",
+    "D2_OBJ_1": "Just a reminder, you have to put requested cat in the carrier.",
+    "D2_OBJ_2": "If there are no suitable cat available, you can throw the cats of screen, or breed them.",
+    "D1_HINT_1": "Oh, if you forget about the cat's genes, you can look it up in the notes.",
+    "D1_HINT_2": "Click the cat paw to see the notes.",
+    "GAME_ENDING_0": "Wow, all the requests have been fulfilled! You're a great breeder! Thanks for your help!",
+    "GAME_ENDING_1": "Good luck!",
+    "GENERIC_QUESTION_CORRECT_0": "Well done!",
+    "GENERIC_QUESTION_CORRECT_1": "That's correct!",
+    "GENERIC_QUESTION_CORRECT_2": "Good job!",
+    "GENERIC_QUESTION_INCORRECT": "That's incorrect, the correct answer is ",
+    "D1_QUEST_1": "Good job!",
+    "D1_QUEST_2": "By the way, quick question.",
+    "D1_QUEST_3": "Do you know this?",
+    "D0_INTRAL_0": "Right, currently the type of cat requested are based on their fur color. Alleles that influence their fur color are <color=#2c6a75>B</color>, <color=#2c6a75>b</color>, and <color=#2c6a75>bl</color>",
+    "D0_INTRAL_1": "Let's find cats with allele <color=#2c6a75>B</color> (Black fur).",
+    "D1_INTRAL_0": "The next one is the <color=#2c6a75>tabby stripe</color>.",
+    "D1_INTRAL_1": "Cats with tabby striped have allele <color=#2c6a75>A</color>.",
+    "D2_INTRAL_0": "The final phenotype is the <color=#2c6a75>Piebald Spotting</color>.",
+    "D2_INTRAL_1": "Cats with piebald spotting have the <color=#2c6a75>S</color> allele. You can tell by the white spots on their body."
   }
 }
