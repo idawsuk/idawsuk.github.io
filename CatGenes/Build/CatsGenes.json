@@ -1,0 +1,15 @@
+{
+"companyName": "ErriKuswadi",
+"productName": "Cats Genes",
+"productVersion": "1.0",
+"dataUrl": "CatsGenes.data.unityweb",
+"wasmCodeUrl": "CatsGenes.wasm.code.unityweb",
+"wasmFrameworkUrl": "CatsGenes.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.31f1"
+}
