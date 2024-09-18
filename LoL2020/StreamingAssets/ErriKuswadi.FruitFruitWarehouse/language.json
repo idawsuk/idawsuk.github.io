@@ -1,65 +1,51 @@
 {
-    "_meta":{
-       "maxChars":{
-          "greatJob":20,
-          "onePlusOne":30,
-          "pressContinue":50,
-          "readyToPlay":20,
-          "welcome":20
-       }
-    },
-    "en":{
-       "gameTutorial41":"You can see how many fruits are there in the order info.",
-       "grape":"grape",
-       "progression4":"Awesome! You've completed all of the orders, thank you for helping! Until next time.",
-       "oranges":"oranges",
-       "challenge11":"Let's ship some fruits!",
-       "apple":"apple",
-       "controlTutorial1":"Let's pick up to one of the fruit box by pressing <b>E</b>.",
-       "questionLess":"How many less %fruit1 to %fruit2",
-       "bananas":"bananas",
-       "mechanicTutorial1":"Now lets learn to complete an order!",
-       "grapes":"grapes",
-       "reverseTutorial3":"And somehow only the amount of fruits are presented.",
-       "progression2":"Nice work! It's time for the next one!",
-       "gameTutorial5":"I know you could do it, great work!",
-       "mechanicTutorial3":"Great! Now sort some boxes on the <b>panels</b>.",
-       "gameStart":"Now to the real thing, let's ship some fruits!",
-       "mechanicTutorial51":"You can input the numbers on the <b>number pad</b>.",
-       "reverseTutorialComplete1":"Wowzers! you're good at this!",
-       "banana":"banana",
-       "reverseTutorial2":"You see that number pad over there? it's <b>fixed in</b> for some reason.",
-       "welcome1":"Hello there, welcome to the Fruit Fruit Warehouse, I'm Toby, your guide on this wonderful endeavor.",
-       "thankYou":"Thank You For Playing!",
-       "objectivecomplete1":"Let's count the fruits in the boxes.",
-       "mechanicTutorial2":"To complete orders you need to see the requirement needed, in this case 5 box of apples.",
-       "questionMore":"How many more %fruit1 to %fruit2",
-       "mechanicTutorial21":"Let's get some boxes from the dispenser over there.",
-       "orders":"Orders\n to complete",
-       "reverseTutorial1":"This one is a bit different.",
-       "welcome2":"Currently our warehouse needs all the help we can get to deliver this boxes of fruit to our client.",
-       "mechanicTutorial5":"Since we've sorted 5 boxes into the panels lets determine how many apples are there.",
-       "credits":"Credits:",
-       "reverseTutorial4":"Let's try solving this for me!",
-       "fruitPerBox":"Box have %s fruits inside.",
-       "challenge2":"Determined how many box required to fulfill the order!",
-       "challenge1":"You've learned the basics,and I think you're ready!",
-       "progression1":"Great job! Let's get moving.",
-       "mechanicTutorial4":"Great job putting those boxes!",
-       "controlTutorial3":"Great, let's get to the next room!",
-       "controlTutorial2":"Now lets put the box on the <b>panel</b>.",
-       "gameTutorial2":"Each fruit box can be categorized in their respective panels.",
-       "orange":"orange",
-       "gameTutorial1":"Looks like we got a different type of fruit box to the deliver.",
-       "continueGame":"Continue",
-       "objectiveRcomplete1":"Nice job!",
-       "reverseTutorialComplete2":"That type of number pads are <b>fixed amount</b> after all.",
-       "apples":"apples",
-       "objectivecomplete2":"Let's determined the fruits in the boxes.",
-       "gameTutorial4":"Now all we have to do is to determine how many fruits are there.",
-       "gameTutorial3":"Also they might have different amount needed to complete the order",
-       "mechanicTutorial6":"You're a natural! Let's proceed to the next room!",
-       "progression3":"All orders are almost completed! Let's get to it!",
-       "newGame":"New Game"
+  "_meta": {
+    "maxChars": {
+      "welcome": 20,
+      "readyToPlay": 20,
+      "pressContinue": 50,
+      "greatJob": 20,
+      "onePlusOne": 30
     }
- }
+  },
+  "en": {
+    "welcome": "Welcome!",
+    "readyToPlay": "Are you ready to play?",
+    "greatJob": "Great job!",
+    "pressContinue": "Press the next button to continue.",
+    "onePlusOne": "One + One = Two",
+    "newGame": "New Game",
+    "continue": "Continue",
+    "pantry": "Pantry",
+    "purchasePan": "Purchase Pan",
+    "autoSave": "...Auto Saving Complete"
+  },
+  "es": {
+    "welcome": "¡Bienvenido!",
+    "readyToPlay": "¿Estás listo para jugar?",
+    "greatJob": "¡Gran trabajo!",
+    "pressContinue": "Presione el botón 'siguiente' para continuar.",
+    "onePlusOne": "Uno + Uno = Dos"
+  },
+  "zh": {
+    "welcome": "欢迎！",
+    "readyToPlay": "你准备好玩吗",
+    "greatJob": "做得好！",
+    "pressContinue": "按“下一步”按钮继续。",
+    "onePlusOne": "一+一=二"
+  },
+  "jp": {
+    "welcome": "ようこそ!",
+    "readyToPlay": "あなたは遊ぶ準備ができていますか？",
+    "greatJob": "よくやった！",
+    "pressContinue": "続行するには '次へ'ボタンを押してください。",
+    "onePlusOne": "1 + 1 = 2"
+  },
+  "ru": {
+    "welcome": "Добро пожаловать!",
+    "readyToPlay": "Вы готовы играть?",
+    "greatJob": "Отличная работа!",
+    "pressContinue": "Нажмите следующую кнопку, чтобы продолжить.",
+    "onePlusOne": "один + один"
+  }
+}
